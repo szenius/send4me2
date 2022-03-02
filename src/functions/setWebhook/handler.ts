@@ -1,5 +1,5 @@
-import type { ValidatedEventAPIGatewayProxyEvent } from "@libs/api-gateway";
 import { Telegraf } from "telegraf";
+import type { ValidatedEventAPIGatewayProxyEvent } from "../../libs/api-gateway";
 import { formatJSONResponse } from "../../libs/api-gateway";
 import { middyfy } from "../../libs/lambda";
 
