@@ -9,6 +9,12 @@ export const addPoll = (ctx: Context & { message: Message.TextMessage }) => {
 
   const tokens = text.match(/(?:[^\s"]+|"[^"]*")+/g);
 
+  if (tokens.length < 4) {
+    return ctx.reply(
+      "Invalid format.\n\nUsage: /addpoll <description of poll> <option 1> <option 2> ... <option N> <day of week> <hour>"
+    );
+  }
+
   const description = removeQuotes(tokens[1]);
 
   const options = tokens
