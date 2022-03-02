@@ -23,7 +23,7 @@ Add a recurring poll.
 /addpoll "What shall we have for dinner next week?" Pizza "Fried chicken" Tacos Sun 1000
 ```
 
-- For description and options, do note that only normal quotes `"` are accepted.
+- Do note that only normal quotes `"` are accepted.
 - Day of week: `mon`, `tue`, `wed`, `thu`, `fri`, `sat` or `sun`
 - Hour: in 24h format
 
