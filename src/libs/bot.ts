@@ -1,9 +1,10 @@
 import { Telegraf, Context } from "telegraf";
+import { addPoll } from "./commands/addPoll";
 import { chatId } from "./commands/chatId";
 import { hi } from "./commands/hi";
 
 const setCommands = (bot: Telegraf<Context>) => {
-  bot.command("hi", hi).command("chat-id", chatId);
+  bot.command("hi", hi).command("chatid", chatId).command("addpoll", addPoll);
 };
 
 export const createBot = () => {

@@ -9,9 +9,6 @@ const webhook: ValidatedEventAPIGatewayProxyEvent<any> = async (event) => {
   const bot = createBot();
   await bot.handleUpdate(event.body);
 
-  // eslint-disable-next-line no-console
-  console.log(event.body);
-
   return formatJSONResponse({});
 };
 
