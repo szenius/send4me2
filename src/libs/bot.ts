@@ -1,4 +1,9 @@
 import { Telegraf, Context } from "telegraf";
+import { hi } from "./commands/hi";
+
+const setCommands = (bot: Telegraf<Context>) => {
+  bot.command("hi", hi);
+};
 
 export const createBot = () => {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
@@ -7,9 +12,7 @@ export const createBot = () => {
     telegram: { webhookReply: false },
   });
 
-  bot.command("hi", (ctx: Context) =>
-    ctx.reply(`Hi ${ctx.message.from.first_name}!`)
-  );
+  setCommands(bot);
 
   return bot;
 };
