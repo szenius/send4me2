@@ -1,1 +1,1 @@
-export { default as hello } from "./hello";
+export { default as setWebhook } from "./setWebhook";

@@ -1,6 +1,6 @@
 import type { AWS } from "@serverless/typescript";
 
-import hello from "./src/functions/hello";
+import * as functions from "./src/functions";
 
 const serverlessConfiguration: AWS = {
   service: "send4me2",
@@ -8,6 +8,7 @@ const serverlessConfiguration: AWS = {
   plugins: ["serverless-esbuild"],
   provider: {
     name: "aws",
+    region: "ap-southeast-1",
     runtime: "nodejs14.x",
     apiGateway: {
       minimumCompressionSize: 1024,
@@ -19,7 +20,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { hello },
+  functions,
   package: { individually: true },
   custom: {
     esbuild: {

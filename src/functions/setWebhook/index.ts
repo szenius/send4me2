@@ -1,18 +1,16 @@
+/* eslint-disable no-template-curly-in-string */
 import { handlerPath } from "../../libs/handler-resolver";
-import schema from "./schema";
 
 export default {
   handler: `${handlerPath(__dirname)}/handler.main`,
+  environment: {
+    TELEGRAM_BOT_TOKEN: "${ssm:/send4me2/${sls:stage}/TELEGRAM_BOT_TOKEN}",
+  },
   events: [
     {
       http: {
         method: "post",
-        path: "hello",
-        request: {
-          schemas: {
-            "application/json": schema,
-          },
-        },
+        path: "set-webhook",
       },
     },
   ],
