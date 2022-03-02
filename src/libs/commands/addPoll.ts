@@ -26,12 +26,12 @@ export const addPoll = (ctx: Context & { message: Message.TextMessage }) => {
 
   return ctx.reply(
     [
-      "Added poll!",
-      `Description: ${description}`,
+      "Poll is scheduled ٩(^ᴗ^)۶",
+      `Description:\n${description}`,
       `Options:\n${options
         .map((option, index) => `${index + 1}. ${option}`)
         .join("\n")}`,
-      `It will run every ${dayOfWeek} at ${hour}.`,
+      `The poll will be sent to this chat every ${dayOfWeek} at ${hour}.`,
     ].join("\n\n")
   );
 };
