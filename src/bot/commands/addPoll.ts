@@ -1,11 +1,15 @@
+import ksuid from "ksuid";
 import { Context } from "telegraf";
 // eslint-disable-next-line import/no-unresolved
 import { Message } from "telegraf/typings/core/types/typegram";
+import { put } from "../../services/dynamodb";
 
 const removeQuotes = (input: string) => input.substring(1, input.length - 1);
 
-export const addPoll = (ctx: Context & { message: Message.TextMessage }) => {
-  const { text } = ctx.message;
+export const addPoll = async (
+  ctx: Context & { message: Message.TextMessage }
+) => {
+  const { text, chat, from } = ctx.message;
 
   const tokens = text.match(/(?:[^\s"]+|"[^"]*")+/g);
 
@@ -18,11 +22,26 @@ export const addPoll = (ctx: Context & { message: Message.TextMessage }) => {
   const description = removeQuotes(tokens[1]);
 
   const options = tokens
-    .slice(2, tokens.length - 2)
+    .slice(2, tokens.length - 1)
     .map((option) => removeQuotes(option));
 
-  const dayOfWeek = tokens[tokens.length - 2];
-  const hour = tokens[tokens.length - 1];
+  const dayOfWeek = tokens[tokens.length - 1];
+
+  const now = new Date();
+  const nowEpochTime = now.getTime();
+
+  await put({
+    TableName: process.env.TABLE_NAME_EVENT,
+    Item: {
+      eventId: ksuid.randomSync(nowEpochTime).string,
+      created: nowEpochTime,
+      chatId: chat.id,
+      creator: from,
+      description,
+      options,
+      dayOfWeek,
+    },
+  });
 
   return ctx.reply(
     [
@@ -31,7 +50,7 @@ export const addPoll = (ctx: Context & { message: Message.TextMessage }) => {
       `Options:\n${options
         .map((option, index) => `${index + 1}. ${option}`)
         .join("\n")}`,
-      `The poll will be sent to this chat every ${dayOfWeek} at ${hour}.`,
+      `The poll will be sent to this chat every ${dayOfWeek} at 00:00 UTC.`,
     ].join("\n\n")
   );
 };

@@ -20,12 +20,11 @@ Add a recurring poll.
 /addpoll <description of poll> <option 1> <option 2> ... <option N> <day of week> <hour>
 
 // Example
-/addpoll "What shall we have for dinner next week?" Pizza "Fried chicken" Tacos Sun 1000
+/addpoll "What shall we have for dinner next week?" Pizza "Fried chicken" Tacos Sun
 ```
 
 - Do note that only normal quotes `"` are accepted.
-- Day of week: `mon`, `tue`, `wed`, `thu`, `fri`, `sat` or `sun`
-- Hour: in 24h format
+- Day of week: `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat` or `Sun`
 
 ### `/chatid`
 

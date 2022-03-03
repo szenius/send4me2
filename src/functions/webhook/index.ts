@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 import { handlerPath } from "../../utils/handler-resolver";
 
 export default {
@@ -8,6 +9,15 @@ export default {
         method: "post",
         path: "webhook",
       },
+    },
+  ],
+  iamRoleStatementsName: "${self:service}-${sls:stage}-webhook",
+  iamRoleStatements: [
+    {
+      Effect: "Allow",
+      Action: "dynamodb:PutItem",
+      Resource:
+        "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.TABLE_NAME_EVENT}",
     },
   ],
 };
