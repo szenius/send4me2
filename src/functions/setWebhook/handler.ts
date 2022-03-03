@@ -1,7 +1,7 @@
-import { createBot } from "../../libs/bot";
-import type { ValidatedEventAPIGatewayProxyEvent } from "../../libs/api-gateway";
-import { formatJSONResponse } from "../../libs/api-gateway";
-import { middyfy } from "../../libs/lambda";
+import { createBot } from "../../bot/bot";
+import type { ValidatedEventAPIGatewayProxyEvent } from "../../utils/api-gateway";
+import { formatJSONResponse } from "../../utils/api-gateway";
+import { middyfy } from "../../utils/lambda";
 
 const setWebhook: ValidatedEventAPIGatewayProxyEvent<void> = async (event) => {
   const bot = createBot();
