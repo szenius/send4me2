@@ -15,7 +15,7 @@ export const createPoll = (description: string, options: Option[]) => {
   const message = [
     description,
     ...optionsDisplay,
-    `👥 *${numResponses}* responses`,
+    `👥 *${numResponses}* response(s)`,
   ].join("\n\n");
 
   const keyboard = Keyboard.make(
