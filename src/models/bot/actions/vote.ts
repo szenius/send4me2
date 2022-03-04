@@ -31,30 +31,26 @@ export const vote = async (ctx: Context & { update: any }) => {
   }
   chosenOption.voters = updatedVoters;
 
-  await update({
-    TableName: process.env.TABLE_NAME_MESSAGE,
-    Key: { chatId, messageId },
-    UpdateExpression: "SET options = :options",
-    ExpressionAttributeValues: {
-      ":options": options,
-    },
-    ReturnValues: "UPDATED_NEW",
-  });
-
   const { message: updatedMessage, inlineKeyboard } = createPoll(
     description,
     options
   );
-  await ctx.telegram.editMessageText(
-    chatId,
-    messageId,
-    messageId,
-    updatedMessage,
-    {
+
+  await Promise.allSettled([
+    update({
+      TableName: process.env.TABLE_NAME_MESSAGE,
+      Key: { chatId, messageId },
+      UpdateExpression: "SET options = :options",
+      ExpressionAttributeValues: {
+        ":options": options,
+      },
+      ReturnValues: "UPDATED_NEW",
+    }),
+    ctx.telegram.editMessageText(chatId, messageId, messageId, updatedMessage, {
       ...inlineKeyboard,
       parse_mode: "MarkdownV2",
-    }
-  );
+    }),
+  ]);
 
   return ctx.answerCbQuery(
     `Your response is ${isAddVote ? "recorded" : "retracted"}!`
