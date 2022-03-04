@@ -19,5 +19,11 @@ export default {
       Resource:
         "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.TABLE_NAME_EVENT}",
     },
+    {
+      Effect: "Allow",
+      Action: ["dynamodb:Query", "dynamodb:UpdateItem"],
+      Resource:
+        "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.TABLE_NAME_MESSAGE}",
+    },
   ],
 };

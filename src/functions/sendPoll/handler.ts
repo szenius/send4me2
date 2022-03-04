@@ -1,41 +1,11 @@
-import { Key, Keyboard } from "telegram-keyboard";
 import { createBot } from "../../bot/bot";
+import { createNewPoll } from "../../poll";
 import { INDEXES } from "../../resources/dynamodb";
 import { put, query } from "../../services/dynamodb";
-import { Event, Option, Message } from "../../types";
+import { Event, Message } from "../../types";
 import { middyfy } from "../../utils/lambda";
 
 const DAY_OF_WEEK_LIST = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-
-const createPoll = (description: Event["description"], options: Option[]) => {
-  const optionsDisplay = options.map(({ label, voters }) =>
-    [
-      `*${label} \\- ${voters.length}*`,
-      ...voters.map((voter) => voter.firstName),
-    ].join("\n")
-  );
-  const numResponses = options.reduce(
-    (sum: number, { voters }: Option) => sum + voters.length,
-    0
-  );
-  const message = [
-    description,
-    ...optionsDisplay,
-    `👥 *${numResponses}* responses`,
-  ].join("\n\n");
-
-  const keyboard = Keyboard.make(
-    options.map(({ label }, index) => [Key.callback(label, `OPTION_${index}`)])
-  );
-
-  return { message, inlineKeyboard: keyboard.inline() };
-};
-
-const createNewPoll = (description: Event["description"], options: string[]) =>
-  createPoll(
-    description,
-    options.map((label) => ({ label, voters: [] }))
-  );
 
 const sendPoll = async () => {
   const bot = createBot();

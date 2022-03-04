@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import { User } from "telegraf/typings/core/types/typegram";
 
-type Voter = { firstName: string };
+type Voter = User;
 export type Option = { label: string; voters: Voter[] };
 
 export interface Event {
