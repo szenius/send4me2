@@ -18,7 +18,7 @@ The full list of commands are as follows:
 Add a recurring poll.
 
 ```text
-/addpoll <description of poll> <option 1> <option 2> ... <option N> <day of week> <hour>
+/addpoll <description of poll> <option 1> <option 2> ... <option N> <day of week>
 
 // Example
 /addpoll "What does everyone want to eat this week?" "Pizza" "Fried chicken" "Sushi" mon
