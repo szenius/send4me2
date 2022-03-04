@@ -6,22 +6,15 @@ This is v2 of the [Send4Me](https://github.com/szenius/send4me) project. It is a
 
 ## Commands
 
-The full list of commands are as follows:
-
-- [`/addpoll`](#addpoll)
-- [`/chatid`](#chatid)
-- [`/hi`](#hi)
-- [`/start`](#start)
-
-### `/addpoll`
+### `/add`
 
 Add a recurring poll.
 
 ```text
-/addpoll <description of poll> <option 1> <option 2> ... <option N> <day of week>
+/add <description of poll> <option 1> <option 2> ... <option N> <day of week>
 
 // Example
-/addpoll "What does everyone want to eat this week?" "Pizza" "Fried chicken" "Sushi" mon
+/add "What does everyone want to eat this week?" "Pizza" "Fried chicken" "Sushi" mon
 ```
 
 - Do note that only normal quotes `"` are accepted.
@@ -34,6 +27,10 @@ Bot will reply with the chat ID.
 ### `/hi`
 
 Bot will say Hi back to you!
+
+### `/list`
+
+List the active recurring polls in your chat.
 
 ### `/start`
 

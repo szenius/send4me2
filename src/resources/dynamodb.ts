@@ -1,4 +1,7 @@
-export const INDEXES = { DAY_OF_WEEK: "dayOfWeekIndex" };
+export const INDEXES_EVENT = {
+  DAY_OF_WEEK: "dayOfWeekIndex",
+  CHAT_ID: "chatIdIndex",
+};
 
 /* eslint-disable no-template-curly-in-string */
 export default {
@@ -14,6 +17,10 @@ export default {
           AttributeName: "dayOfWeek",
           AttributeType: "S",
         },
+        {
+          AttributeName: "chatId",
+          AttributeType: "N",
+        },
       ],
       KeySchema: [
         {
@@ -23,11 +30,25 @@ export default {
       ],
       GlobalSecondaryIndexes: [
         {
-          IndexName: INDEXES.DAY_OF_WEEK,
+          IndexName: INDEXES_EVENT.DAY_OF_WEEK,
           KeySchema: [
             {
               AttributeName: "dayOfWeek",
               KeyType: "HASH",
+            },
+          ],
+          Projection: { ProjectionType: "ALL" },
+        },
+        {
+          IndexName: INDEXES_EVENT.CHAT_ID,
+          KeySchema: [
+            {
+              AttributeName: "chatId",
+              KeyType: "HASH",
+            },
+            {
+              AttributeName: "eventId",
+              KeyType: "RANGE",
             },
           ],
           Projection: { ProjectionType: "ALL" },

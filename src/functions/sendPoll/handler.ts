@@ -1,6 +1,6 @@
 import { createBot } from "../../models/bot/bot";
 import { createNewPoll } from "../../models/poll/poll";
-import { INDEXES } from "../../resources/dynamodb";
+import { INDEXES_EVENT } from "../../resources/dynamodb";
 import { put, query } from "../../services/dynamodb";
 import { Event, Message } from "../../types";
 import { middyfy } from "../../utils/lambda";
@@ -14,7 +14,7 @@ const sendPoll = async () => {
   const dayOfWeekToday = DAY_OF_WEEK_LIST[today.getUTCDay()];
 
   const { Items: events } = await query({
-    IndexName: INDEXES.DAY_OF_WEEK,
+    IndexName: INDEXES_EVENT.DAY_OF_WEEK,
     TableName: process.env.TABLE_NAME_EVENT,
     KeyConditionExpression: "dayOfWeek = :dayOfWeek",
     ExpressionAttributeValues: {
