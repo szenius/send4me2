@@ -7,9 +7,14 @@ import { middyfy } from "../../utils/lambda";
 
 const DAY_OF_WEEK_LIST = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
-const createPoll = (event: Event) => {
-  const keyboard = Keyboard.make(event.options);
-  return { message: event.description, inlineKeyboard: keyboard.inline() };
+const createPoll = (description: string, options: string[]) => {
+  const message = [
+    description,
+    ...options.map((option) => `*${option} \\- 0*`),
+    "👥 *0* responses",
+  ].join("\n\n");
+  const keyboard = Keyboard.make(options.map((option) => [option]));
+  return { message, inlineKeyboard: keyboard.inline() };
 };
 
 const sendPoll = async () => {
@@ -27,11 +32,26 @@ const sendPoll = async () => {
     },
   });
 
-  const sendMessageDeferred = events.map((event: Event) => {
-    const { message, inlineKeyboard } = createPoll(event);
-    return bot.telegram.sendMessage(event.chatId, message, inlineKeyboard);
-  });
-  await Promise.allSettled(sendMessageDeferred);
+  // eslint-disable-next-line no-console
+  console.log(JSON.stringify(events));
+
+  const sendMessageDeferred = events.map(
+    ({ description, options, chatId }: Event) => {
+      const { message, inlineKeyboard } = createPoll(description, options);
+
+      // eslint-disable-next-line no-console
+      console.log(JSON.stringify(message));
+
+      return bot.telegram.sendMessage(chatId, message, {
+        ...inlineKeyboard,
+        parse_mode: "MarkdownV2",
+      });
+    }
+  );
+  const results = await Promise.allSettled(sendMessageDeferred);
+
+  // eslint-disable-next-line no-console
+  console.log(JSON.stringify(results));
 };
 
 export const main = middyfy(sendPoll);
