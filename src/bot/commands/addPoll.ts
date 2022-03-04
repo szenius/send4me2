@@ -24,7 +24,11 @@ export const addPoll = async (
 
   const options = tokens
     .slice(2, tokens.length - 1)
-    .map((option) => removeQuotes(option));
+    .map((option) => removeQuotes(option))
+    .map((optionDescription) => ({
+      label: optionDescription,
+      voters: [],
+    }));
 
   const dayOfWeek = tokens[
     tokens.length - 1
