@@ -10,6 +10,15 @@ export interface Event {
   chatId: number;
   creator: User;
   description: string;
-  options: Option[];
+  options: string[];
   dayOfWeek: "SUN" | "MON" | "TUE" | "WED" | "THU" | "FRI" | "SAT";
+}
+
+export interface Message {
+  eventId: string;
+  messageId: string;
+  created: number;
+  chatId: number;
+  description: string;
+  options: Option[];
 }

@@ -2,7 +2,7 @@ export const INDEXES = { DAY_OF_WEEK: "dayOfWeekIndex" };
 
 /* eslint-disable no-template-curly-in-string */
 export default {
-  ExpensesTable: {
+  EventTable: {
     Type: "AWS::DynamoDB::Table",
     Properties: {
       AttributeDefinitions: [
@@ -35,6 +35,33 @@ export default {
       ],
       BillingMode: "PAY_PER_REQUEST",
       TableName: "${self:provider.environment.TABLE_NAME_EVENT}",
+    },
+  },
+  MessageTable: {
+    Type: "AWS::DynamoDB::Table",
+    Properties: {
+      AttributeDefinitions: [
+        {
+          AttributeName: "chatId",
+          AttributeType: "N",
+        },
+        {
+          AttributeName: "messageId",
+          AttributeType: "N",
+        },
+      ],
+      KeySchema: [
+        {
+          AttributeName: "chatId",
+          KeyType: "HASH",
+        },
+        {
+          AttributeName: "messageId",
+          KeyType: "RANGE",
+        },
+      ],
+      BillingMode: "PAY_PER_REQUEST",
+      TableName: "${self:provider.environment.TABLE_NAME_MESSAGE}",
     },
   },
 };
