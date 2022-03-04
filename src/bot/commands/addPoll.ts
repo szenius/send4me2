@@ -25,7 +25,7 @@ export const addPoll = async (
     .slice(2, tokens.length - 1)
     .map((option) => removeQuotes(option));
 
-  const dayOfWeek = tokens[tokens.length - 1];
+  const dayOfWeek = tokens[tokens.length - 1].toUpperCase();
 
   const now = new Date();
   const nowEpochTime = now.getTime();

@@ -4,3 +4,5 @@ const dynamoClient = new DynamoDB.DocumentClient({ region: "ap-southeast-1" });
 
 export const put = (params: DynamoDB.DocumentClient.PutItemInput): any =>
   dynamoClient.put(params).promise();
+export const query = (params: DynamoDB.DocumentClient.QueryInput): any =>
+  dynamoClient.query(params).promise();
