@@ -19,7 +19,17 @@ export const vote = async (ctx: Context & { update: any }) => {
   });
 
   const { description, options } = messages[0];
-  options[optionId].voters.push(from);
+  const chosenOption = options[optionId];
+  const updatedVoters = chosenOption.voters.filter(
+    (voter) => voter.id !== from.id
+  );
+
+  let isAddVote = false;
+  if (chosenOption.voters.length === updatedVoters.length) {
+    updatedVoters.push(from);
+    isAddVote = true;
+  }
+  chosenOption.voters = updatedVoters;
 
   await update({
     TableName: process.env.TABLE_NAME_MESSAGE,
@@ -46,5 +56,7 @@ export const vote = async (ctx: Context & { update: any }) => {
     }
   );
 
-  return ctx.answerCbQuery("Recorded your response!");
+  return ctx.answerCbQuery(
+    `Your response is ${isAddVote ? "recorded" : "retracted"}!`
+  );
 };
