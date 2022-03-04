@@ -14,7 +14,8 @@
     "@middy/http-json-body-parser": "^2.5.3",
     "aws-sdk": "^2.1085.0",
     "ksuid": "^3.0.0",
-    "telegraf": "^4.7.0"
+    "telegraf": "^4.7.0",
+    "telegram-keyboard": "^2.3.0"
   },
   "devDependencies": {
     "@serverless/typescript": "^3.0.0",

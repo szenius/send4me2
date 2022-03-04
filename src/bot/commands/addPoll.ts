@@ -3,6 +3,7 @@ import { Context } from "telegraf";
 // eslint-disable-next-line import/no-unresolved
 import { Message } from "telegraf/typings/core/types/typegram";
 import { put } from "../../services/dynamodb";
+import { Event } from "../../types";
 
 const removeQuotes = (input: string) => input.substring(1, input.length - 1);
 
@@ -25,22 +26,26 @@ export const addPoll = async (
     .slice(2, tokens.length - 1)
     .map((option) => removeQuotes(option));
 
-  const dayOfWeek = tokens[tokens.length - 1].toUpperCase();
+  const dayOfWeek = tokens[
+    tokens.length - 1
+  ].toUpperCase() as Event["dayOfWeek"];
 
   const now = new Date();
   const nowEpochTime = now.getTime();
 
+  const event: Event = {
+    eventId: ksuid.randomSync(nowEpochTime).string,
+    created: nowEpochTime,
+    chatId: chat.id,
+    creator: from,
+    description,
+    options,
+    dayOfWeek,
+  };
+
   await put({
     TableName: process.env.TABLE_NAME_EVENT,
-    Item: {
-      eventId: ksuid.randomSync(nowEpochTime).string,
-      created: nowEpochTime,
-      chatId: chat.id,
-      creator: from,
-      description,
-      options,
-      dayOfWeek,
-    },
+    Item: event,
   });
 
   return ctx.reply(

@@ -1,9 +1,16 @@
+import { Keyboard } from "telegram-keyboard";
 import { createBot } from "../../bot/bot";
 import { INDEXES } from "../../resources/dynamodb";
 import { query } from "../../services/dynamodb";
+import { Event } from "../../types";
 import { middyfy } from "../../utils/lambda";
 
 const DAY_OF_WEEK_LIST = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+const createPoll = (event: Event) => {
+  const keyboard = Keyboard.make(event.options);
+  return { message: event.description, inlineKeyboard: keyboard.inline() };
+};
 
 const sendPoll = async () => {
   const bot = createBot();
@@ -19,9 +26,11 @@ const sendPoll = async () => {
       ":dayOfWeek": dayOfWeekToday,
     },
   });
-  const sendMessageDeferred = events.map(({ chatId, description }) =>
-    bot.telegram.sendMessage(chatId, description)
-  );
+
+  const sendMessageDeferred = events.map((event: Event) => {
+    const { message, inlineKeyboard } = createPoll(event);
+    return bot.telegram.sendMessage(event.chatId, message, inlineKeyboard);
+  });
   await Promise.allSettled(sendMessageDeferred);
 };
 
