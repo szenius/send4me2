@@ -3,12 +3,14 @@ import { vote } from "./actions/vote";
 import { addPoll } from "./commands/addPoll";
 import { chatId } from "./commands/chatId";
 import { hi } from "./commands/hi";
+import { start } from "./commands/start";
 
 const setCommands = (bot: Telegraf<Context>) => {
   bot
     .command("addpoll", addPoll)
     .command("chatid", chatId)
     .command("hi", hi)
+    .command("start", start)
     .action(/VOTE_[0-9]+/, vote);
 };
 
