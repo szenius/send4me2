@@ -1,5 +1,5 @@
 import { Key, Keyboard } from "telegram-keyboard";
-import { Option } from "./types";
+import { Option } from "../../types";
 
 export const createPoll = (description: string, options: Option[]) => {
   const optionsDisplay = options.map(({ label, voters }) =>

@@ -1,4 +1,4 @@
-import { createBot } from "../../bot/bot";
+import { createBot } from "../../models/bot/bot";
 import type { ValidatedEventAPIGatewayProxyEvent } from "../../utils/api-gateway";
 import { formatJSONResponse } from "../../utils/api-gateway";
 import { middyfy } from "../../utils/lambda";

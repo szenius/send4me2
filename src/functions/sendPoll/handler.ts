@@ -1,5 +1,5 @@
-import { createBot } from "../../bot/bot";
-import { createNewPoll } from "../../poll";
+import { createBot } from "../../models/bot/bot";
+import { createNewPoll } from "../../models/poll/poll";
 import { INDEXES } from "../../resources/dynamodb";
 import { put, query } from "../../services/dynamodb";
 import { Event, Message } from "../../types";

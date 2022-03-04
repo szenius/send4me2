@@ -1,6 +1,6 @@
 import { Context } from "telegraf";
-import { createPoll } from "../../poll";
-import { query, update } from "../../services/dynamodb";
+import { createPoll } from "../../poll/poll";
+import { query, update } from "../../../services/dynamodb";
 
 export const vote = async (ctx: Context & { update: any }) => {
   const { message, from, data } = ctx.update.callback_query;

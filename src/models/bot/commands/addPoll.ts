@@ -2,8 +2,8 @@ import ksuid from "ksuid";
 import { Context } from "telegraf";
 // eslint-disable-next-line import/no-unresolved
 import { Message } from "telegraf/typings/core/types/typegram";
-import { put } from "../../services/dynamodb";
-import { Event } from "../../types";
+import { put } from "../../../services/dynamodb";
+import { Event } from "../../../types";
 
 const removeQuotes = (input: string) => input.substring(1, input.length - 1);
 
