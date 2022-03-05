@@ -15,10 +15,11 @@ export const add = async (ctx: Context & { message: Message.TextMessage }) => {
   if (tokens.length < 4) {
     return ctx.reply(
       [
-        "Invalid format.",
-        "Usage: `/add <description of poll> <option 1> <option 2> ... <option N> <day of week>`",
+        "Invalid format\\.",
+        "Usage: `/add <description of poll> <option 1> <option 2> \\.\\.\\. <option N> <day of week>`",
         'Example: `/add "What does everyone want to eat this week?" "Pizza" "Fried chicken" "Sushi" mon`',
-      ].join("\n\n")
+      ].join("\n\n"),
+      { parse_mode: "MarkdownV2" }
     );
   }
 
