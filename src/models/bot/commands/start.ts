@@ -1,10 +1,10 @@
 import { Context } from "telegraf";
 
-export const start = (ctx: Context) =>
-  ctx.reply(
-    [
-      "To add a poll:",
-      "/add <description of poll> <option 1> <option 2> ... <option N> <day of week>",
-      `e.g. /add "What does everyone want to eat this week?" "Pizza" "Fried chicken" "Sushi" mon`,
-    ].join("\n\n")
-  );
+export const start = (ctx: Context) => {
+  const commands = [
+    "/add - Add a recurring poll.",
+    "/list - List active recurring polls in this chat.",
+    "/remove - Choose an active recurring poll to remove.",
+  ];
+  return ctx.reply(commands.join("\n"));
+};

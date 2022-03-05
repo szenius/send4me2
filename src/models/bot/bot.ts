@@ -12,10 +12,11 @@ import {
 const setCommands = (bot: Telegraf<Context>) => {
   bot
     .command("add", add)
-    .command("chatid", chatId)
-    .command("hi", hi)
     .command("list", list)
     .command("remove", removeCommand)
+    .command("chatid", chatId)
+    .command("help", start)
+    .command("hi", hi)
     .command("start", start)
     .action(/VOTE_[0-9]+/, vote)
     .action(/REMOVE_[A-Za-z0-9]+/, remove);

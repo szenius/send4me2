@@ -6,7 +6,9 @@ This is v2 of the [Send4Me](https://github.com/szenius/send4me) project. It is a
 
 ## Commands
 
-### `/add`
+### Poll
+
+#### `/add`
 
 Add a recurring poll.
 
@@ -20,22 +22,28 @@ Add a recurring poll.
 - Do note that only normal quotes `"` are accepted.
 - Day of week: `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat` or `Sun`
 
-### `/chatid`
+#### `/list`
 
-Bot will reply with the chat ID.
+List active recurring polls in this chat.
 
-### `/hi`
+#### `/remove`
 
-Bot will say Hi back to you!
+List the active recurring polls in your chat. Choose the one you want to remove.
 
-### `/list`
+### Other
 
-List the active recurring polls in your chat.
+#### `/chatid`
 
-### `/remove`
+Get Telegram chat ID.
 
-Bot will list the active recurring polls in your chat. Choose the one you want to remove.
+#### `/help`
 
-### `/start`
+List available commands.
 
-Bot will share example usage of the bot.
+#### `/hi`
+
+Say Hi!
+
+#### `/start`
+
+List available commands.
