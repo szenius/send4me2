@@ -1,17 +1,17 @@
 import { Telegraf, Context } from "telegraf";
-import { vote } from "./actions/vote";
+import { remove, vote } from "./actions";
 import { addPoll, chatId, hi, listPolls, start } from "./commands";
 
 const setCommands = (bot: Telegraf<Context>) => {
   bot
     .command("add", addPoll)
-    .command("addpoll", addPoll)
     .command("chatid", chatId)
     .command("hi", hi)
     .command("list", listPolls)
-    .command("listpolls", listPolls)
+    .command("remove", remove)
     .command("start", start)
-    .action(/VOTE_[0-9]+/, vote);
+    .action(/VOTE_[0-9]+/, vote)
+    .action(/REMOVE_[A-Za-z0-9]+/, remove);
 };
 
 export const createBot = () => {

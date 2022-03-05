@@ -15,7 +15,7 @@ export default {
   iamRoleStatements: [
     {
       Effect: "Allow",
-      Action: ["dynamodb:Query", "dynamodb:PutItem"],
+      Action: ["dynamodb:Query", "dynamodb:PutItem", "dynamodb:DeleteItem"],
       Resource: [
         "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.TABLE_NAME_EVENT}",
         "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.TABLE_NAME_EVENT}/*",

@@ -8,3 +8,5 @@ export const query = (params: DynamoDB.DocumentClient.QueryInput): any =>
   dynamoClient.query(params).promise();
 export const update = (params: DynamoDB.DocumentClient.UpdateItemInput): any =>
   dynamoClient.update(params).promise();
+export const remove = (params: DynamoDB.DocumentClient.DeleteItemInput): any =>
+  dynamoClient.delete(params).promise();

@@ -32,6 +32,10 @@ Bot will say Hi back to you!
 
 List the active recurring polls in your chat.
 
+### `/remove`
+
+Bot will list the active recurring polls in your chat. Choose the one you want to remove.
+
 ### `/start`
 
 Bot will share example usage of the bot.
