@@ -1,20 +1,20 @@
 import { Telegraf, Context } from "telegraf";
 import { remove, vote } from "./actions";
 import {
-  addPoll,
+  add,
   chatId,
   hi,
-  listPolls,
+  list,
   start,
   remove as removeCommand,
 } from "./commands";
 
 const setCommands = (bot: Telegraf<Context>) => {
   bot
-    .command("add", addPoll)
+    .command("add", add)
     .command("chatid", chatId)
     .command("hi", hi)
-    .command("list", listPolls)
+    .command("list", list)
     .command("remove", removeCommand)
     .command("start", start)
     .action(/VOTE_[0-9]+/, vote)

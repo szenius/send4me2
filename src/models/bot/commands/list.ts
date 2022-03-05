@@ -3,7 +3,7 @@ import { INDEXES_EVENT } from "../../../resources/dynamodb";
 import { query } from "../../../services/dynamodb";
 import { Event } from "../../../types";
 
-export const listPolls = async (ctx: Context) => {
+export const list = async (ctx: Context) => {
   const chatId = ctx.message.chat.id;
 
   const { Items } = await query({

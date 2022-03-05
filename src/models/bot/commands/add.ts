@@ -7,9 +7,7 @@ import { Event } from "../../../types";
 
 const removeQuotes = (input: string) => input.substring(1, input.length - 1);
 
-export const addPoll = async (
-  ctx: Context & { message: Message.TextMessage }
-) => {
+export const add = async (ctx: Context & { message: Message.TextMessage }) => {
   const { text, chat, from } = ctx.message;
 
   const tokens = text.match(/(?:[^\s"]+|"[^"]*")+/g);
