@@ -28,7 +28,7 @@ const sendPoll = async () => {
 
       return bot.telegram.sendMessage(chatId, message, {
         ...inlineKeyboard,
-        parse_mode: "MarkdownV2",
+        parse_mode: "Markdown",
       });
     }
   );

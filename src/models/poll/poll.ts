@@ -4,7 +4,7 @@ import { Option } from "../../types";
 export const createPoll = (description: string, options: Option[]) => {
   const optionsDisplay = options.map(({ label, voters }) =>
     [
-      `*${label} \\- ${voters.length}*`,
+      `*${label} - ${voters.length}*`,
       ...voters.map((voter) => voter.first_name),
     ].join("\n")
   );
@@ -15,7 +15,7 @@ export const createPoll = (description: string, options: Option[]) => {
   const message = [
     description,
     ...optionsDisplay,
-    `👥 *${numResponses}* response\\(s\\)`,
+    `👥 *${numResponses}* response(s)`,
   ].join("\n\n");
 
   const keyboard = Keyboard.make(
