@@ -48,7 +48,7 @@ export const vote = async (ctx: Context & { update: any }) => {
     }),
     ctx.telegram.editMessageText(chatId, messageId, messageId, updatedMessage, {
       ...inlineKeyboard,
-      parse_mode: "MarkdownV2",
+      parse_mode: "Markdown",
     }),
   ]);
 
