@@ -15,11 +15,11 @@ export const add = async (ctx: Context & { message: Message.TextMessage }) => {
   if (tokens.length < 4) {
     return ctx.reply(
       [
-        "Invalid format\\.",
-        "Usage: `/add <description of poll> <option 1> <option 2> \\.\\.\\. <option N> <day of week>`",
+        "Invalid format.",
+        "Usage: `/add <description of poll> <option 1> <option 2> ... <option N> <day of week>`",
         'Example: `/add "What does everyone want to eat this week?" "Pizza" "Fried chicken" "Sushi" mon`',
       ].join("\n\n"),
-      { parse_mode: "MarkdownV2" }
+      { parse_mode: "Markdown" }
     );
   }
 
@@ -32,6 +32,17 @@ export const add = async (ctx: Context & { message: Message.TextMessage }) => {
   const dayOfWeek = tokens[
     tokens.length - 1
   ].toUpperCase() as Event["dayOfWeek"];
+
+  if (!["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"].includes(dayOfWeek)) {
+    return ctx.reply(
+      [
+        "Invalid day of week. Accepted: `MON`. `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.",
+        "Usage: `/add <description of poll> <option 1> <option 2> ... <option N> <day of week>`",
+        'Example: `/add "What does everyone want to eat this week?" "Pizza" "Fried chicken" "Sushi" mon`',
+      ].join("\n\n"),
+      { parse_mode: "Markdown" }
+    );
+  }
 
   const now = new Date();
   const nowEpochTime = now.getTime();
