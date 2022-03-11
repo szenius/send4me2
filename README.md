@@ -4,9 +4,9 @@ The bot is [live here](https://t.me/Send4Me2Bot)!
 
 This is v2 of the [Send4Me](https://github.com/szenius/send4me) project. It is a Telegram bot that automates sending of recurring polls.
 
-## Commands
+## User Guide
 
-### Poll
+### Poll-related commands
 
 #### `/add`
 
@@ -30,7 +30,7 @@ List active recurring polls in this chat.
 
 List the active recurring polls in your chat. Choose the one you want to remove.
 
-### Other
+### Other commands
 
 #### `/chatid`
 
@@ -47,3 +47,11 @@ Say Hi!
 #### `/start`
 
 List available commands.
+
+## Developer Guide
+
+### Set up
+
+```shell
+npm i
+```
